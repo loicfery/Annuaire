@@ -1,0 +1,277 @@
+/*C3*/SET SCHEMA PUBLIC
+drop table if exists tgroup CASCADE 
+drop table if exists tperson CASCADE 
+drop table if exists txuser CASCADE 
+drop table if exists xuser_roles CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table tgroup (id bigint not null, name varchar(200) not null, version bigint not null, primary key (id))
+create table tperson (id bigint not null, birth_day date not null, first_name varchar(200) not null, last_name varchar(200) not null, mail varchar(200), password varchar(200) not null, version bigint not null, web varchar(200), pgroup bigint, primary key (id))
+create table txuser (user_name varchar(200) not null, id bigint, password varchar(200) not null, version bigint not null, primary key (user_name))
+create table xuser_roles (xuser_user_name varchar(200) not null, roles varchar(255) not null, primary key (xuser_user_name, roles))
+alter table txuser add constraint UK4hwg7st94y3xef6irkxxgstaa unique (id)
+alter table tperson add constraint FKblqrknwh0809nq5p0k4hfdquk foreign key (pgroup) references tgroup
+alter table xuser_roles add constraint FKe51r7vvh7ots1b624a1q9p5in foreign key (xuser_user_name) references txuser
+INSERT INTO TGROUP VALUES(1,'Group 1',0)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO TGROUP VALUES(2,'Group 2',0)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO TGROUP VALUES(3,'Group 3',0)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO TGROUP VALUES(4,'Group 4',0)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO TPERSON VALUES(5,'1999-03-27','Lo\u00efc','Fery','LoicFery@email.com','password',0,'',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO TXUSER VALUES('LoicFery@email.com',NULL,'$2a$10$blRW.9Bt.LWcJgO9A0cMVO6.ipgk54s6H/F/0PdrjMFVf.M/QDoam',0)
+INSERT INTO XUSER_ROLES VALUES('LoicFery@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(6,'2000-04-06','Bastien','Feraud','BastienFeraud@email.com','password',0,'www.web.com',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO TXUSER VALUES('BastienFeraud@email.com',NULL,'$2a$10$O6rrqjkgIlyOMWyDvHcRAexscCd6GR9Kj.BqiKmOOpaqqQXtTnVwq',0)
+INSERT INTO XUSER_ROLES VALUES('BastienFeraud@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(7,'1980-10-15','Alain','Dal-Molin','AlainDalMolin@email.com','password',0,'',2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO TXUSER VALUES('AlainDalMolin@email.com',NULL,'$2a$10$2Z4Mib2tVhmkCgQ5bLGIf.6sRnJwSqPIUY1OfpEimBqBD4jEURAmq',0)
+INSERT INTO XUSER_ROLES VALUES('AlainDalMolin@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(8,'1988-01-01','Amine','Hamri','AmineHamri@email.com','password',0,'',4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO TXUSER VALUES('AmineHamri@email.com',NULL,'$2a$10$obbtTAHVOtE5BDMVIv9Hw.5AxTTn1a5eNuCFPkXvx92B2vmLSIN/W',0)
+INSERT INTO XUSER_ROLES VALUES('AmineHamri@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(9,'1947-04-22','Desire','Breton','DesireBreton@email.com','password',0,'',3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO TXUSER VALUES('DesireBreton@email.com',NULL,'$2a$10$L/dRYhFebky.0UsiOW1PmuM.sCz6hMMSqmPfJ7cHxFlH3whIjKBXy',0)
+INSERT INTO XUSER_ROLES VALUES('DesireBreton@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(10,'1981-03-20','Aurore','Charpie','AuroreCharpie@email.com','password',0,'InventionSpecialist.fr',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+INSERT INTO TXUSER VALUES('AuroreCharpie@email.com',NULL,'$2a$10$e6aU/wGBE3XKUr0/7UNpDe8WbeKOxea/vcjk4aLTln4xmSr6mnjv6',0)
+INSERT INTO XUSER_ROLES VALUES('AuroreCharpie@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(11,'1971-06-17','Odo','Dupuis','OdoDupuis@email.com','password',0,'TechCelebrity.fr',3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 12
+COMMIT
+INSERT INTO TXUSER VALUES('OdoDupuis@email.com',NULL,'$2a$10$PZ3aOEen/OAUSUGCiDzfx.B4P/KNhYAX/.WfneLRkjPxZnET6WYtK',0)
+INSERT INTO XUSER_ROLES VALUES('OdoDupuis@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(12,'1983-05-26','Raoul','Laframboise','RaoulLaframboise@email.com','password',0,'Alizat.fr',3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 13
+COMMIT
+INSERT INTO TXUSER VALUES('RaoulLaframboise@email.com',NULL,'$2a$10$zvBG4MNSU3SyyQiR7kjYoeHQkfVCCobQ38QtpmkklhGp8GWdL2B/u',0)
+INSERT INTO XUSER_ROLES VALUES('RaoulLaframboise@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(13,'1993-02-04','Oc\u00e9ane','Sauriol','OceaneSauriol@email.com','password',0,'TalentMenu.fr',3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 14
+COMMIT
+INSERT INTO TXUSER VALUES('OceaneSauriol@email.com',NULL,'$2a$10$739pFkINVtr2Rq4yc9zno.V2ZbOIdyo7eOYNHdJIVU0ZnOqHlUamm',0)
+INSERT INTO XUSER_ROLES VALUES('OceaneSauriol@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(14,'1968-08-10','Pascaline','Hughes','PascalineHughes@email.com','password',0,'TelevisionSplitters.fr',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 15
+COMMIT
+INSERT INTO TXUSER VALUES('PascalineHughes@email.com',NULL,'$2a$10$xlPhnyuAHGUyw1Xfz35oXuUJ86uGjWazKutiTWLj9KqBc7olGLsZa',0)
+INSERT INTO XUSER_ROLES VALUES('PascalineHughes@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(15,'1992-10-07','Clothilde','Simard','ClothildeSimard@email.com','password',0,'SoapCandy.fr',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 16
+COMMIT
+INSERT INTO TXUSER VALUES('ClothildeSimard@email.com',NULL,'$2a$10$.wTK0dO.3fI0PF.9n1HpjeklhpAIFP0e9/W6Di/2.4XrUyKlVO5h.',0)
+INSERT INTO XUSER_ROLES VALUES('ClothildeSimard@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(16,'1995-06-04','Archaimbau','Lussier','ArchaimbauLussier@email.com','password',0,'ScooterSpecialists.fr',4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 17
+COMMIT
+INSERT INTO TXUSER VALUES('ArchaimbauLussier@email.com',NULL,'$2a$10$9WkYu6BA1RfY/K.IHabAleT6meWONiRB38nVbNJVqZ/Gt1N56Jw9q',0)
+INSERT INTO XUSER_ROLES VALUES('ArchaimbauLussier@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(17,'1939-06-16','Cammile','Sauvv\u00e9','CammileSauve@email.com','password',0,'PreTree.fr',2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 18
+COMMIT
+INSERT INTO TXUSER VALUES('CammileSauve@email.com',NULL,'$2a$10$6c608lcoY7px3keOexdn8eW4rQ22K9XPny3fZCU0jvVXDZkEZ/T/2',0)
+INSERT INTO XUSER_ROLES VALUES('CammileSauve@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(18,'1971-03-18','Tearlach','Tisserand','TearlachTisserand@email.com','password',0,'KnoxvilleWebhost.fr',2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 19
+COMMIT
+INSERT INTO TXUSER VALUES('TearlachTisserand@email.com',NULL,'$2a$10$Xo76COk7KP/AcxZ7vdfp.uPCNqbWHk8bGfpTtS/nAgWncYI.VyqEG',0)
+INSERT INTO XUSER_ROLES VALUES('TearlachTisserand@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(19,'1964-11-17','Javier','M\u00e9nard','JavierMenard@email.com','password',0,'EvilSister.fr',4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 20
+COMMIT
+INSERT INTO TXUSER VALUES('JavierMenard@email.com',NULL,'$2a$10$RGL3ksXRIJKR92N9eHe7yO9SdP4MdEOGsdqnan8b1dnQPWXVGNp9a',0)
+INSERT INTO XUSER_ROLES VALUES('JavierMenard@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(20,'1960-12-04','Fantina','Morel','FantinaMorel@email.com','password',0,'LacrosseRugby.fr',2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 21
+COMMIT
+INSERT INTO TXUSER VALUES('FantinaMorel@email.com',NULL,'$2a$10$pM9mk9LXkMAfD1df2ZHHa.Pn6yXoLsZc0OOBChTEsK5XXffv0551O',0)
+INSERT INTO XUSER_ROLES VALUES('FantinaMorel@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(21,'1998-07-16','Vachel','Dupont','VachelDupont@email.com','password',0,'BarRank.fr',2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 22
+COMMIT
+INSERT INTO TXUSER VALUES('VachelDupont@email.com',NULL,'$2a$10$cf6NyrBn5lmyzGDkRMPq7uoHaCxg1BQMCbsManZbX6aLUZRQ3uAVm',0)
+INSERT INTO XUSER_ROLES VALUES('VachelDupont@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(22,'1971-04-19','Victoire','Rivard','VictoireRivard@email.com','password',0,'ProspectingTeam.fr',4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 23
+COMMIT
+INSERT INTO TXUSER VALUES('VictoireRivard@email.com',NULL,'$2a$10$eyGlPuX6Afp3JrQpWpkUhuINMpW22zakj2EspOXZZY80SrImn9Vom',0)
+INSERT INTO XUSER_ROLES VALUES('VictoireRivard@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(23,'1977-10-02','Denise','Chauvin','DeniseChauvin@email.com','password',0,'NewsTutorial.fr',3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 24
+COMMIT
+INSERT INTO TXUSER VALUES('DeniseChauvin@email.com',NULL,'$2a$10$LlqHYMgCtyXpFjc0VfxCk.yMQghux7xAqWtsGdNXylu0yUBUEUtMu',0)
+INSERT INTO XUSER_ROLES VALUES('DeniseChauvin@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(24,'1955-05-11','Marine','Angelier','MarineLAngelier@email.com','password',0,'DanceSync.fr',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 25
+COMMIT
+INSERT INTO TXUSER VALUES('MarineLAngelier@email.com',NULL,'$2a$10$iZ0u74Qh.JdES6eSvvXN3uM3Qb5We70FBRbNZwlaY0iSH81Ar02OG',0)
+INSERT INTO XUSER_ROLES VALUES('MarineLAngelier@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(25,'2001-07-08','Gr\u00e9goire','Brousseau','GregoireBrousseau@email.com','password',0,'FindSkins.fr',2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 26
+COMMIT
+INSERT INTO TXUSER VALUES('GregoireBrousseau@email.com',NULL,'$2a$10$dsAukMF5JN3CQLD36/ZvUOCDfYZHtgdQ2p8Uca4wqhGwS7tPoQbfu',0)
+INSERT INTO XUSER_ROLES VALUES('GregoireBrousseau@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(26,'1947-01-18','Iven','Brisette','IvenBrisette@email.com','password',0,'PokerClues.fr',3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 27
+COMMIT
+INSERT INTO TXUSER VALUES('IvenBrisette@email.com',NULL,'$2a$10$.pakDtT6nVlOCWDQVeQOpuZvw7BHe5pMu/vJSxSTgnV1PhHxcZGHy',0)
+INSERT INTO XUSER_ROLES VALUES('IvenBrisette@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(27,'1954-08-01','Cinderella','Beauchesne','CinderellaBeauchesne@email.com','password',0,'ReadyHD.fr',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 28
+COMMIT
+INSERT INTO TXUSER VALUES('CinderellaBeauchesne@email.com',NULL,'$2a$10$haiJH9BvD7kVG4D8VfVWIOKEtHguzUptY.2yL6rBEtnl5HBN/hyPi',0)
+INSERT INTO XUSER_ROLES VALUES('CinderellaBeauchesne@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(28,'1988-06-01','Trinette','Frappier','TrinetteFrappier@email.com','password',0,'DevelopFuel.fr',4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 29
+COMMIT
+INSERT INTO TXUSER VALUES('TrinetteFrappier@email.com',NULL,'$2a$10$kRUNmroaVLddfG2TUXiivePxUrgssfkmLO4.eaeVMyhj9DEYemC/S',0)
+INSERT INTO XUSER_ROLES VALUES('TrinetteFrappier@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(29,'1949-08-26','Paigne','Cantin','PaigeCantin@email.com','password',0,'FreelanceAgreement.fr',3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 30
+COMMIT
+INSERT INTO TXUSER VALUES('PaigeCantin@email.com',NULL,'$2a$10$8WBGtxQLSC6hh/NCOLqUuuY74Z0jjY6lGZKa9klRJxC2bCiQf7HV6',0)
+INSERT INTO XUSER_ROLES VALUES('PaigeCantin@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(30,'1966-02-14','Chappell','Turcotte','ChappellTurcotte@email.com','password',0,'MakeJam.fr',4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 31
+COMMIT
+INSERT INTO TXUSER VALUES('ChappellTurcotte@email.com',NULL,'$2a$10$Vzb8PKNV3opYYvGF9QhpQO6UV7wOHuWrkmu93zlm.IS4k7FRGkKBG',0)
+INSERT INTO XUSER_ROLES VALUES('ChappellTurcotte@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(31,'1944-06-02','Claudette','Laforest','ClaudetteLaforest@email.com','password',0,'MicroVerify.fr',4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 32
+COMMIT
+INSERT INTO TXUSER VALUES('ClaudetteLaforest@email.com',NULL,'$2a$10$NRvfNsB56iKb4tMNM.r5Je9kfQqqbWNzCHrG1CHVqfWHiyffFKXdu',0)
+INSERT INTO XUSER_ROLES VALUES('ClaudetteLaforest@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(32,'1987-09-13','Fr\u00e9d\u00e9rique','Vincent','FrederiqueVincent@email.com','password',0,'SpaRules.fr',4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 33
+COMMIT
+INSERT INTO TXUSER VALUES('FrederiqueVincent@email.com',NULL,'$2a$10$LJVeSNQd5sPZ3NbsltcZ4.de3Bypq3G.tEjUC.31ufG7h03N69aYO',0)
+INSERT INTO XUSER_ROLES VALUES('FrederiqueVincent@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(33,'1996-05-19','Latitia','Gagnon','LaetitiaGagnon@email.com','password',0,'ChatTickets.fr',2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 34
+COMMIT
+INSERT INTO TXUSER VALUES('LaetitiaGagnon@email.com',NULL,'$2a$10$bBCSQOPL84dJyFaHR6hsK.3MNW1da8bpVyeuBcuVFSb5OMV/TXQCa',0)
+INSERT INTO XUSER_ROLES VALUES('LaetitiaGagnon@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(34,'1981-07-06','Raine','Tougas','RainaTougas@email.com','password',0,'RugSafe.fr',2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 35
+COMMIT
+INSERT INTO TXUSER VALUES('RainaTougas@email.com',NULL,'$2a$10$8eVyWpLSvVQefx1NaNu8R.9ul5Gw9xqwbuDcBXsAN2kOzMW8/h7tu',0)
+INSERT INTO XUSER_ROLES VALUES('RainaTougas@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(35,'1946-01-29','Mandel','Courtois','MandelCourtois@email.com','password',0,'MaleWeekend.fr',4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 36
+COMMIT
+INSERT INTO TXUSER VALUES('MandelCourtois@email.com',NULL,'$2a$10$NCKRkmQ6tCDtFKN9Q0K3wO3w.PlDso6dC88IS80uTTroqGusKSKt.',0)
+INSERT INTO XUSER_ROLES VALUES('MandelCourtois@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(36,'1980-06-20','Ila','Simon','IlaSimon@email.com','password',0,'DashboardTalk.fr',4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 37
+COMMIT
+INSERT INTO TXUSER VALUES('IlaSimon@email.com',NULL,'$2a$10$30kuPIuxfyQye2/DnV2buOxmtiivvYKfTLmZTHO4zWhwmXeiM/m8i',0)
+INSERT INTO XUSER_ROLES VALUES('IlaSimon@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(37,'1952-08-07','S\u00e9bastien','Poirier','SebastienPoirier@email.com','password',0,'ReunionBusiness.fr',2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 38
+COMMIT
+INSERT INTO TXUSER VALUES('SebastienPoirier@email.com',NULL,'$2a$10$11ZSSVUryrvZMrpWVQ9Tr.pTh5eiegUVmU/Oy.7bGJxk1RhlzYXoW',0)
+INSERT INTO XUSER_ROLES VALUES('SebastienPoirier@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(38,'1980-11-05','Ranger','Leclair','RangerLeclair@email.com','password',0,'RushResource.fr',2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 39
+COMMIT
+INSERT INTO TXUSER VALUES('RangerLeclair@email.com',NULL,'$2a$10$3Cy/Vo0EPJx2nAuk9eRdQOrHYZTfTfxr7mvLOLrS9sCrlCcMCGR6G',0)
+INSERT INTO XUSER_ROLES VALUES('RangerLeclair@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(39,'1951-03-10','Alexandre','Laram\u00e9e','AlexandreLaramee@email.com','password',0,'MaternityMoments.fr',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 40
+COMMIT
+INSERT INTO TXUSER VALUES('AlexandreLaramee@email.com',NULL,'$2a$10$6RCysjDQA2J6hyyZK86ZdeiiZhEc0DiaMQdD0h6fM397fj.Ru0Che',0)
+INSERT INTO XUSER_ROLES VALUES('AlexandreLaramee@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(40,'1970-11-03','Brunella','Brousseau','BrunellaBrousseau@email.com','password',0,'BangNames.fr',4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 41
+COMMIT
+INSERT INTO TXUSER VALUES('BrunellaBrousseau@email.com',NULL,'$2a$10$01GoHHioBRGx/ZwrT6hB4.PaewuqfNO35NWnW0KhS8BNex290xlY2',0)
+INSERT INTO XUSER_ROLES VALUES('BrunellaBrousseau@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(41,'1959-07-24','Latimer','Charette','LatimerCharette@email.com','password',0,'ValleyShows.fr',3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 42
+COMMIT
+INSERT INTO TXUSER VALUES('LatimerCharette@email.com',NULL,'$2a$10$AgHTKq4TKIPigXBSuHvA8Ol4wFVJSvOULa//ktHTkqsCcNAns9CmW',0)
+INSERT INTO XUSER_ROLES VALUES('LatimerCharette@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(42,'1977-10-21','Lotye','Therriault','LotyeTherriault@email.com','password',0,'ParentingCounselor.fr',4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 43
+COMMIT
+INSERT INTO TXUSER VALUES('LotyeTherriault@email.com',NULL,'$2a$10$XzhaoGLZREBdmd3VJPPQnu5YRG5braqCM0V3KeA4KbjAH5jta.RHi',0)
+INSERT INTO XUSER_ROLES VALUES('LotyeTherriault@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(43,'1972-06-20','Hamilton','Bisson','HamiltonBisson@email.com','password',0,'RobotMarketing.fr',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 44
+COMMIT
+INSERT INTO TXUSER VALUES('HamiltonBisson@email.com',NULL,'$2a$10$azO91w6X0w0V8G.wQf2IFOUhQU8jAHL6PU5RbnRYcaI7w.ESkAc6S',0)
+INSERT INTO XUSER_ROLES VALUES('HamiltonBisson@email.com','USER')
+COMMIT
+INSERT INTO TPERSON VALUES(44,'1940-10-26','Maurelle','Montminy','MaurelleMontminy@email.com','password',0,'SocialChronicle.fr',1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 45
+COMMIT
+INSERT INTO TXUSER VALUES('MaurelleMontminy@email.com',NULL,'$2a$10$EhSvJIowFCD4dhSaKch7xez7zvFX9BmNjYcTrN7.nGnLiMT1BxjxK',0)
+INSERT INTO XUSER_ROLES VALUES('MaurelleMontminy@email.com','USER')
+COMMIT
+INSERT INTO TXUSER VALUES('bastien@email.com',NULL,'$2a$10$Wsq21WI2/Ul5op94L44R/Od6Wj1yIukp1DarpFdCh4kJZHKeNE9jy',0)
+INSERT INTO XUSER_ROLES VALUES('bastien@email.com','USER')
+COMMIT
+INSERT INTO TXUSER VALUES('aaa',NULL,'$2a$10$hdtnMu8eDIRZrJ03Ah/StuocRDB.r.e3iExHsSTGunRezugGIcVGm',0)
+INSERT INTO XUSER_ROLES VALUES('aaa','ADMIN')
+INSERT INTO XUSER_ROLES VALUES('aaa','USER')
+COMMIT
+INSERT INTO TXUSER VALUES('loic@email.com',NULL,'$2a$10$w7Ge4XEzu6RmyD4z3e1tyez3DL8oFQ65KsyYhGT2238OWyo5MjXTe',0)
+INSERT INTO XUSER_ROLES VALUES('loic@email.com','ADMIN')
+INSERT INTO XUSER_ROLES VALUES('loic@email.com','USER')
+COMMIT
